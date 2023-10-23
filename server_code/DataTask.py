@@ -132,5 +132,8 @@ def add_card(card):
 
 def update_row(cardId, card):
   row = app_tables.cards.search(id=cardId)[0]
-  print(row["name"])
+  row["usd"] = float(card["usd"])
+  row["usd_foil"] = float(card["usd_foil"])
+  row["eur"] = float(card["eur"])
+  row["eur_foil"] = float(card["eur_foil"])
   
