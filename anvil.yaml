@@ -11,7 +11,7 @@ runtime_options:
   version: 2
   client_version: '3'
   server_version: python3-full
-  server_spec: {base: python310-minimal}
+  server_spec: null
   server_spec_disabled: {requirements: '', base: python310-minimal}
 metadata: {title: David Darigan Data Science & Machine Learning Portfolio, description: A Portfolio of My Data Science Projects}
 startup_form: null

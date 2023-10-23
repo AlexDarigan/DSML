@@ -51,17 +51,20 @@ def getBulkCardData():
         # Skipping '[' & ']'
         if len(line) == 1:
             continue
-        cardId, card = add_card(json.loads(line.decode("UTF8").rstrip(',')))
-        card_row_exists(cardId)
+        cardId, card = filter_card(json.loads(line.decode("UTF8").rstrip(',')))
+        if card_row_exists(cardId):
+          update_row(cardId, card)
+        else:
+          add_card(card)
         records += 1
         break
     return records
 
 def card_row_exists(cardId):
-  row = app_tables.cards.search(id=cardId)
-  print(row)
+  return len(app_tables.cards.search(id=cardId)) > 0
+  
 # Double Check CMC, TypeLine & Oracle Text
-def add_card(card):
+def filter_card(card):
     newCard = {
         "id": card["id"],
         "name": card["name"],
@@ -97,32 +100,37 @@ def add_card(card):
         "eur_foil": card["prices"]["eur_foil"],
     }
     return (newCard["id"], newCard)
-    
-  # app_tables.cards.add_row(id=newCard["id"],
-    #                         name=newCard["name"],
-    #                         released_at=card["released_at"],
-    #                         uri=card["uri"],
-    #                         mana_cost=card["mana_cost"],
-    #                         cmc=int(card["cmc"]),
-    #                         type_line=card["type_line"],
-    #                         oracle_text=card["oracle_text"],
-    #                         power=int(card["power"]),
-    #                         toughness=int(card["toughness"]),
-    #                         colors=card["colors"],
-    #                         keywords=card["keywords"],
-    #                         legalities=card["legalities"],
-    #                         reserved=card["reserved"],
-    #                         foil=card["foil"],
-    #                         nonfoil=card["nonfoil"],
-    #                         finishes=card["finishes"],
-    #                         promo=card["promo"],
-    #                         reprint=card["reprint"],
-    #                         variation=card["variation"],
-    #                         set_id = card["set_id"],
-    #                         rarity = card["rarity"],
-    #                         full_art = card["full_art"],
-    #                         usd = float(card["prices"]["usd"]),
-    #                         usd_foil = float(card["prices"]["usd_foil"]),
-    #                         eur = float(card["prices"]["eur"]),
-    #                         eur_foil = float(card["prices"]["eur_foil"]))
-    #return (newCard["id"], newCard)
+
+def add_card(card):
+  app_tables.cards.add_row(id=card["id"],
+                          name=card["name"],
+                          released_at=card["released_at"],
+                          uri=card["uri"],
+                          mana_cost=card["mana_cost"],
+                          cmc=int(card["cmc"]),
+                          type_line=card["type_line"],
+                          oracle_text=card["oracle_text"],
+                          power=int(card["power"]),
+                          toughness=int(card["toughness"]),
+                          colors=card["colors"],
+                          keywords=card["keywords"],
+                          legalities=card["legalities"],
+                          reserved=card["reserved"],
+                          foil=card["foil"],
+                          nonfoil=card["nonfoil"],
+                          finishes=card["finishes"],
+                          promo=card["promo"],
+                          reprint=card["reprint"],
+                          variation=card["variation"],
+                          set_id = card["set_id"],
+                          rarity = card["rarity"],
+                          full_art = card["full_art"],
+                          usd = float(card["usd"]),
+                          usd_foil = float(card["usd_foil"]),
+                          eur = float(card["eur"]),
+                          eur_foil = float(card["eur_foil"]))
+
+def update_row(cardId, card):
+  row = app_tables.cards.search(id=cardId)[0]
+  print(row["name"])
+  
