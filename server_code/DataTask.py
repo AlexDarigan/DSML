@@ -41,13 +41,18 @@ def getData():
   download = data["download_uri"]
   # DOWNLOAD CARD DATA
   #downloaded = requests.get(download) #, stream=True)
-  downloaded = anvil.http.request(download)  # An API that provides slow responses
-  print(downloaded.get_length())
-  print(downloaded.is_complete())
-  print(downloaded.content_type)
-  bytes = downloaded.get_bytes()
-  str = bytes.decode("utf-8")
-  print("got string")
+  # downloaded = anvil.http.request(download)  # An API that provides slow responses
+  # print(downloaded.get_length())
+  # print(downloaded.is_complete())
+  # print(downloaded.content_type)
+  # bytes = downloaded.get_bytes()
+  # str = bytes.decode("utf-8")
+  # print("got string")
+
+  downloaded = requests.get(download)
+  if downloaded.status_code != 200:
+    print("err")
+  print(dir(downloaded))
   
   # line_feed = b'10'
   # str += ""
