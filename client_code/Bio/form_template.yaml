@@ -1,0 +1,25 @@
+is_package: true
+container:
+  type: HtmlTemplate
+  properties: {html: '@theme:standard-page.html'}
+components:
+- type: ColumnPanel
+  properties: {}
+  name: content_panel
+  layout_properties: {slot: default}
+- type: FlowPanel
+  properties: {}
+  name: navbar_links
+  layout_properties: {slot: nav-right}
+  components:
+  - name: links_1
+    properties: {}
+    type: form:Links
+- name: label_1
+  properties: {text: About Me}
+  type: Label
+  layout_properties: {slot: title}
+- name: menu_1
+  properties: {}
+  type: form:Menu
+  layout_properties: {slot: left-nav}
