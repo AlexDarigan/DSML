@@ -61,6 +61,9 @@ def getData():
       continue
     #data.append(json.loads(line.decode("utf-8")[:-1]))
     data.append(line.decode("utf-8")[:-1])
+    line += 1
+    if line > 100:
+      break
   print(data)
   print("got cards")
   
