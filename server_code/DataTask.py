@@ -50,6 +50,8 @@ def getData():
       continue
     #data.append(json.loads(line.decode("utf-8")[:-1]))
     #lines.append(line.decode("utf-8")[:-1])
+
+    print(line.decode("utf-8")[:-1])
     line_num += 1
     # if line_num > 1000:
     #   break
@@ -57,17 +59,6 @@ def getData():
   print("got cards")
   
     
-  
-
-  
-  #   print(dir(downloaded))
-#   # if downloaded.status_code != 200:
-#   #   print("Download failed with status code: " + str(downloaded.status_code))
-# # 88666 cards from bulk-data/default-cards
-#   print("launch background")
-#   #cards = downloaded.json()
-#   print(downloaded) #.content)
-#   print("background launched")
   return "Hello World"
 
   
