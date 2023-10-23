@@ -67,7 +67,7 @@ def card_row_exists(cardId):
 def add_card(card):
   if "card_faces" in card:
     # Skipping double-faced cards for now
-    return
+    return 0
   print(card["name"])
   app_tables.cards.add_row(id=card["id"],
                           name=card["name"],
