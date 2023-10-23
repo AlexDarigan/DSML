@@ -51,58 +51,22 @@ def getBulkCardData():
         # Skipping '[' & ']'
         if len(line) == 1:
             continue
-        cardId, card = filter_card(json.loads(line.decode("UTF8").rstrip(',')))
-        if card_row_exists(cardId):
-          update_row(cardId, card)
+        card = json.loads(line.decode("UTF8").rstrip(','))
+        if card_row_exists(card["id"]):
+          update_row(card)
         else:
-          add_card(card)
-        records += 1
-    print(f'processed {records} records')
+          records += add_card(card)
+    print(f'processed {records} new records')
     return records
 
 def card_row_exists(cardId):
   return len(app_tables.cards.search(id=cardId)) > 0
   
 # Double Check CMC, TypeLine & Oracle Text
-def filter_card(card):
-    print(card["name"])
-    newCard = {
-        "id": card["id"],
-        "name": card["name"],
-        "released_at": card["released_at"],
-        "uri": card["uri"],
-        "mana_cost": card["mana_cost"],
-        "cmc": int(card["cmc"]),
-        "type_line": card["type_line"],
-        "oracle_text": card.get("oracle_text", ""),
-        "power": card.get("power", "N/A"),
-        "toughness": card.get("toughness", "N/A"),
-        "colors": card["colors"],
-        "keywords": card["keywords"],
-        "legalities": {
-            "standard": card["legalities"]["standard"],
-            "modern": card["legalities"]["modern"],
-            "legacy": card["legalities"]["legacy"],
-            "vintage": card["legalities"]["vintage"],
-        },
-        "reserved": card["reserved"],
-        "foil": card["foil"],
-        "nonfoil": card["nonfoil"],
-        "finishes": card["finishes"],
-        "promo": card["promo"],
-        "reprint": card["reprint"],
-        "variation": card["variation"],
-        "set_id": card["set_id"],
-        "rarity": card["rarity"],
-        "full_art": card["full_art"],
-        "usd": card["prices"]["usd"],
-        "usd_foil": card["prices"]["usd_foil"],
-        "eur": card["prices"]["eur"],
-        "eur_foil": card["prices"]["eur_foil"],
-    }
-    return (newCard["id"], newCard)
-
+# Some cards are double-sided, so right now we're just going to skip any cards with "transform keyword"
 def add_card(card):
+  if "Transform" in card["keywords"]:
+    return 0
   app_tables.cards.add_row(id=card["id"],
                           name=card["name"],
                           released_at=card["released_at"],
@@ -110,12 +74,17 @@ def add_card(card):
                           mana_cost=card["mana_cost"],
                           cmc=int(card["cmc"]),
                           type_line=card["type_line"],
-                          oracle_text=card["oracle_text"],
-                          power= card["power"],
-                          toughness= card["toughness"],
+                          oracle_text=card.get("oracle_text"),
+                          power= card.get("power", "N/A"),
+                          toughness= card.get("toughness", "N/A"),
                           colors=card["colors"],
-                          keywords=card["keywords"],
-                          legalities=card["legalities"],
+                          keywords=card["keywords"],         
+                          legalities={
+                            "standard": card["legalities"]["standard"],
+                            "modern": card["legalities"]["modern"],
+                            "legacy": card["legalities"]["legacy"],
+                            "vintage": card["legalities"]["vintage"]
+                          },
                           reserved=card["reserved"],
                           foil=card["foil"],
                           nonfoil=card["nonfoil"],
@@ -126,17 +95,18 @@ def add_card(card):
                           set_id = card["set_id"],
                           rarity = card["rarity"],
                           full_art = card["full_art"],
-                          usd = to_float(card["usd"]),
-                          usd_foil = to_float(card["usd_foil"]),
-                          eur = to_float(card["eur"]),
-                          eur_foil = to_float(card["eur_foil"]))
+                          usd = to_float(card["prices"]["usd"]),
+                          usd_foil = to_float(card["prices"]["usd_foil"]),
+                          eur = to_float(card["prices"]["eur"]),
+                          eur_foil = to_float(card["prices"]["eur_foil"]))
+  return 1
 
 def update_row(cardId, card):
   row = app_tables.cards.search(id=cardId)[0]
-  row["usd"] = to_float(card["usd"])
-  row["usd_foil"] = to_float(card["usd_foil"])
-  row["eur"] = to_float(card["eur"])
-  row["eur_foil"] = to_float(card["eur_foil"])
+  row["usd"] = to_float(card["prices"]["usd"])
+  row["usd_foil"] = to_float(card["prices"]["usd_foil"])
+  row["eur"] = to_float(card["prices"]["eur"])
+  row["eur_foil"] = to_float(card["prices"]["eur_foil"])
 
 def to_float(source):
   if source is None:
