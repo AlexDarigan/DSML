@@ -42,14 +42,17 @@ def getData():
   # DOWNLOAD CARD DATA
   #downloaded = requests.get(download) #, stream=True)
   downloaded = anvil.http.request(download)  # An API that provides slow responses
-  print(downloaded)
-  # if downloaded.status_code != 200:
-  #   print("Download failed with status code: " + str(downloaded.status_code))
-# 88666 cards from bulk-data/default-cards
-  print("launch background")
-  #cards = downloaded.json()
-  print(downloaded) #.content)
-  print("background launched")
+  print(downloaded.get_length())
+  print(downloaded.is_complete())
+  
+  #   print(dir(downloaded))
+#   # if downloaded.status_code != 200:
+#   #   print("Download failed with status code: " + str(downloaded.status_code))
+# # 88666 cards from bulk-data/default-cards
+#   print("launch background")
+#   #cards = downloaded.json()
+#   print(downloaded) #.content)
+#   print("background launched")
   return "Hello World"
 
   
