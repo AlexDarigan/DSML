@@ -45,6 +45,15 @@ def getData():
   print(downloaded.get_length())
   print(downloaded.is_complete())
   print(downloaded.content_type)
+
+  json_str = download.get_bytes().decode('utf-8')
+  # Parse the JSON string into a Python dictionary
+  data = json.loads(json_str)
+  
+  # Now 'data' contains the JSON data as a Python dictionary
+  print(data)
+
+  
   #   print(dir(downloaded))
 #   # if downloaded.status_code != 200:
 #   #   print("Download failed with status code: " + str(downloaded.status_code))
