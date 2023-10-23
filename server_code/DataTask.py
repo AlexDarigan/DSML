@@ -46,8 +46,8 @@ def getData():
   print(downloaded.is_complete())
   print(downloaded.content_type)
   bytes = downloaded.get_bytes()
-  str = bytes.decode("utf-8")
-  print("got str")
+  for i in 10:
+    print(bytes[i])
   
 
   
