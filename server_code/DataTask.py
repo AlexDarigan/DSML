@@ -65,6 +65,7 @@ def card_row_exists(cardId):
   
 # Double Check CMC, TypeLine & Oracle Text
 def filter_card(card):
+    print(card["name"])
     newCard = {
         "id": card["id"],
         "name": card["name"],
@@ -74,8 +75,8 @@ def filter_card(card):
         "cmc": int(card["cmc"]),
         "type_line": card["type_line"],
         "oracle_text": card["oracle_text"],
-        "power": card["power"],
-        "toughness": card["toughness"],
+        "power": card.get("power", "N/A"),
+        "toughness": card.get("toughness", "N/A"),
         "colors": card["colors"],
         "keywords": card["keywords"],
         "legalities": {
@@ -110,7 +111,7 @@ def add_card(card):
                           cmc=int(card["cmc"]),
                           type_line=card["type_line"],
                           oracle_text=card["oracle_text"],
-                          power= card.get("power", default=0),
+                          power= card["power"],
                           toughness= card["toughness"],
                           colors=card["colors"],
                           keywords=card["keywords"],
