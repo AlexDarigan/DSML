@@ -53,6 +53,9 @@ def getData():
   if downloaded.status_code != 200:
     print("err")
   print(dir(downloaded))
+  print("getting cards")
+  cards = downloaded.json()
+  print("got cards")
   
   # line_feed = b'10'
   # str += ""
