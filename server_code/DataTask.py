@@ -9,7 +9,7 @@ import timeit
 import requests
 import sys
 import anvil.http
-from io import BytesIO
+from datetime import datetime
 
 @anvil.server.callable
 def countRows():
@@ -47,7 +47,8 @@ def getBulkCardData():
     downloaded = requests.get(download_link, stream=True)
     if downloaded.status_code != 200:
         return response.status_code
-    
+
+    row = app_tables.population.add_row(DateTime=datetime.now(), records=0, new_records=0)
     # Processing Card Records
     records = 0
     for line in downloaded.iter_lines():
@@ -57,9 +58,12 @@ def getBulkCardData():
         card = json.loads(line.decode("UTF8").rstrip(','))
         if card_row_exists(card["id"]):
           update_row(card)
+          row["last_add"] = datetime.now()
         else:
-          records += add_card(card)
-    print(f'processed {records} new records')
+          newRecord += add_card(card)
+          row["new_records"] += newRecord
+        row['records'] += 1
+        row["last_add"] = datetime.now()
     return records
 
 def card_row_exists(cardId):
@@ -71,10 +75,9 @@ def add_card(card):
   if "card_faces" in card:
     # Skipping double-faced cards for now
     return 0
-  print(card["name"])
   app_tables.cards.add_row(id=card["id"],
                           name=card["name"],
-                          released_at=card["released_at"],
+                          released_at=datetime.strptime(card["released_at"], "%Y-%m-%d").date(), 
                           uri=card["uri"],
                           mana_cost=card["mana_cost"],
                           cmc=int(card["cmc"]),
@@ -83,13 +86,17 @@ def add_card(card):
                           power= card.get("power", "N/A"),
                           toughness= card.get("toughness", "N/A"),
                           colors=card["colors"],
-                          keywords=card["keywords"],         
-                          legalities={
-                            "standard": card["legalities"]["standard"],
-                            "modern": card["legalities"]["modern"],
-                            "legacy": card["legalities"]["legacy"],
-                            "vintage": card["legalities"]["vintage"]
-                          },
+                          red="R" in card["colors"],
+                          blue="U" in card["colors"],
+                          green="G" in card["colors"],
+                          black="B" in card["colors"],
+                          white="W" in card["colors"],
+                          colorless=len(card["colors"]) == 0,
+                          keywords=card["keywords"],
+                          standard=card["legalities"]["standard"] == "legal",
+                          modern=card["legalities"]["modern"] == "legal",
+                          legacy=card["legalities"]["legacy"] == "legal",
+                          vintage=card["legalities"]["vintage"] == "legal",
                           reserved=card["reserved"],
                           foil=card["foil"],
                           nonfoil=card["nonfoil"],

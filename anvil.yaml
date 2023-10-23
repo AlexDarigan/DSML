@@ -1,3 +1,10 @@
+scheduled_tasks:
+- task_name: getBulkCardData
+  time_spec:
+    n: 1
+    every: week
+    at: {minute: 0, hour: 3, day: 4}
+  job_id: CNYVMDKW
 dependencies: []
 services:
 - source: /runtime/services/tables.yml
@@ -25,9 +32,6 @@ db_schema:
       type: string
     - name: name
       admin_ui: {width: 200, order: 1}
-      type: string
-    - name: released_at
-      admin_ui: {width: 200, order: 2}
       type: string
     - name: uri
       admin_ui: {width: 200, order: 3}
@@ -101,5 +105,55 @@ db_schema:
     - name: toughness
       admin_ui: {width: 200, order: 28}
       type: string
+    - name: red
+      admin_ui: {order: 29, width: 200}
+      type: bool
+    - name: blue
+      admin_ui: {order: 30, width: 200}
+      type: bool
+    - name: green
+      admin_ui: {order: 31, width: 200}
+      type: bool
+    - name: white
+      admin_ui: {order: 32, width: 200}
+      type: bool
+    - name: black
+      admin_ui: {order: 33, width: 200}
+      type: bool
+    - name: colorless
+      admin_ui: {order: 34, width: 200}
+      type: bool
+    - name: standard
+      admin_ui: {order: 35, width: 200}
+      type: bool
+    - name: modern
+      admin_ui: {order: 36, width: 200}
+      type: bool
+    - name: legacy
+      admin_ui: {order: 37, width: 200}
+      type: bool
+    - name: vintage
+      admin_ui: {order: 38, width: 200}
+      type: bool
+    - name: released_at
+      admin_ui: {width: 200, order: 39}
+      type: date
     title: Cards
+  population:
+    client: none
+    server: full
+    columns:
+    - name: start
+      admin_ui: {order: 0, width: 200}
+      type: datetime
+    - name: records
+      admin_ui: {width: 200, order: 1}
+      type: number
+    - name: new_records
+      admin_ui: {width: 200, order: 2}
+      type: number
+    - name: last_add
+      admin_ui: {order: 3, width: 200}
+      type: datetime
+    title: Population
 renamed: true
