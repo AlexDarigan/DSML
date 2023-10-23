@@ -44,12 +44,6 @@ db_schema:
     - name: oracle_text
       admin_ui: {width: 200, order: 7}
       type: string
-    - name: power
-      admin_ui: {width: 200, order: 8}
-      type: number
-    - name: toughness
-      admin_ui: {width: 200, order: 9}
-      type: number
     - name: colors
       admin_ui: {width: 200, order: 10}
       type: simpleObject
@@ -101,5 +95,11 @@ db_schema:
     - name: eur_foil
       admin_ui: {width: 200, order: 26}
       type: number
+    - name: power
+      admin_ui: {width: 200, order: 27}
+      type: string
+    - name: toughness
+      admin_ui: {width: 200, order: 28}
+      type: string
     title: Cards
 renamed: true
