@@ -46,8 +46,18 @@ def getData():
   print(downloaded.is_complete())
   print(downloaded.content_type)
   bytes = downloaded.get_bytes()
-  for i in range(0, 10):
-    print(bytes[i])
+  str = bytes.decode("utf-8")
+  print("got string")
+  
+  # line_feed = b'10'
+  # str += ""
+  # # 0 is [, 1 is our line feed
+  # for i in range(2, len(bytes)):
+  #   if bytes[i] == line_feed:
+  #     print()
+  #   else:
+  #   str += bytes[i]
+    
   
 
   
