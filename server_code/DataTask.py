@@ -44,7 +44,7 @@ def getData():
   downloaded = anvil.http.request(download)  # An API that provides slow responses
   print(downloaded.get_length())
   print(downloaded.is_complete())
-  
+  print(downloaded.content_type)
   #   print(dir(downloaded))
 #   # if downloaded.status_code != 200:
 #   #   print("Download failed with status code: " + str(downloaded.status_code))
