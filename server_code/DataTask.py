@@ -67,6 +67,7 @@ def card_row_exists(cardId):
 def add_card(card):
   if "Transform" in card["keywords"]:
     return 0
+  print(card["name"])
   app_tables.cards.add_row(id=card["id"],
                           name=card["name"],
                           released_at=card["released_at"],
@@ -101,8 +102,8 @@ def add_card(card):
                           eur_foil = to_float(card["prices"]["eur_foil"]))
   return 1
 
-def update_row(cardId, card):
-  row = app_tables.cards.search(id=cardId)[0]
+def update_row(card):
+  row = app_tables.cards.search(id=card["id"])[0]
   row["usd"] = to_float(card["prices"]["usd"])
   row["usd_foil"] = to_float(card["prices"]["usd_foil"])
   row["eur"] = to_float(card["prices"]["eur"])
