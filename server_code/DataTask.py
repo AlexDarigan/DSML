@@ -74,7 +74,7 @@ def filter_card(card):
         "mana_cost": card["mana_cost"],
         "cmc": int(card["cmc"]),
         "type_line": card["type_line"],
-        "oracle_text": card["oracle_text"],
+        "oracle_text": card.get("oracle_text", ""),
         "power": card.get("power", "N/A"),
         "toughness": card.get("toughness", "N/A"),
         "colors": card["colors"],
