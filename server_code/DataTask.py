@@ -46,12 +46,13 @@ def getData():
   print(downloaded.is_complete())
   print(downloaded.content_type)
 
-  json_str = downloaded.get_bytes().decode('utf-8')
-  # Parse the JSON string into a Python dictionary
-  data = json.loads(json_str)
+  print(downloaded.get_bytes())
+  # json_str = downloaded.get_bytes().decode('utf-8')
+  # # Parse the JSON string into a Python dictionary
+  # data = json.loads(json_str)
   
-  # Now 'data' contains the JSON data as a Python dictionary
-  print(data)
+  # # Now 'data' contains the JSON data as a Python dictionary
+  # print(data)
 
   
   #   print(dir(downloaded))
