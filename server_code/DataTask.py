@@ -41,18 +41,11 @@ def getData():
   download = data["download_uri"]
   # DOWNLOAD CARD DATA
   #downloaded = requests.get(download) #, stream=True)
-  downloaded = anvil.http.request(download)  # An API that provides slow responses
+  downloaded = anvil.http.request(download, json=True)  # An API that provides slow responses
   print(downloaded.get_length())
   print(downloaded.is_complete())
   print(downloaded.content_type)
-
-  print(downloaded.get_bytes())
-  # json_str = downloaded.get_bytes().decode('utf-8')
-  # # Parse the JSON string into a Python dictionary
-  # data = json.loads(json_str)
   
-  # # Now 'data' contains the JSON data as a Python dictionary
-  # print(data)
 
   
   #   print(dir(downloaded))
