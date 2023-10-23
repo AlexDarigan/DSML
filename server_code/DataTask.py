@@ -6,6 +6,7 @@ import timeit
 import requests
 import sys
 import anvil.http
+from io import BytesIO
 
 
 @anvil.server.callable()
@@ -37,35 +38,26 @@ def getData():
   data = response.json()
   if data:
     print(data)
-  # DOWNLOAD CARD DATA
   download = data["download_uri"]
-  # DOWNLOAD CARD DATA
-  #downloaded = requests.get(download) #, stream=True)
+  downloaded = requests.get(download) #, stream=True)
   # downloaded = anvil.http.request(download)  # An API that provides slow responses
-  # print(downloaded.get_length())
-  # print(downloaded.is_complete())
-  # print(downloaded.content_type)
-  # bytes = downloaded.get_bytes()
-  # str = bytes.decode("utf-8")
-  # print("got string")
-
-  downloaded = requests.get(download)
   if downloaded.status_code != 200:
     print("err")
-  print(dir(downloaded))
-  print("getting cards")
-  i = 0
-  data = []
-  for line in downloaded.iter_lines():
-    if len(line) == 1:
-      continue
-    #data.append(json.loads(line.decode("utf-8")[:-1]))
-    data.append(line.decode("utf-8")[:-1])
-    line += 1
-    if line > 100:
-      break
-  print(data)
-  print("got cards")
+  df = pandas.read_csv(BytesIO(downloaded.content))
+  print(df)
+  
+  # i = 0
+  # data = []
+  # for line in downloaded.iter_lines():
+  #   if len(line) == 1:
+  #     continue
+  #   #data.append(json.loads(line.decode("utf-8")[:-1]))
+  #   data.append(line.decode("utf-8")[:-1])
+  #   line += 1
+  #   if line > 100:
+  #     break
+  # print(data)
+  # print("got cards")
   
     
   
