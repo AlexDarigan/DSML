@@ -1,5 +1,6 @@
 from ._anvil_designer import DSMLTemplate
 from anvil import *
+import anvil.server
 
 class DSML(DSMLTemplate):
   def __init__(self, **properties):

@@ -1,5 +1,6 @@
 from ._anvil_designer import MenuTemplate
 from anvil import *
+import anvil.server
 
 class Menu(MenuTemplate):
   def __init__(self, **properties):

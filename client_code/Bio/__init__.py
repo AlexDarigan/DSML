@@ -1,5 +1,6 @@
 from ._anvil_designer import BioTemplate
 from anvil import *
+import anvil.server
 
 class Bio(BioTemplate):
   def __init__(self, **properties):
