@@ -59,22 +59,11 @@ def getData():
   for line in downloaded.iter_lines():
     if len(line) == 1:
       continue
-    text = line.decode("utf-8")[:-1]
-    data.append(json.loads(text))
-    i += 1
-    if i > 10:
-      break
+    #data.append(json.loads(line.decode("utf-8")[:-1]))
+    data.append(line.decode("utf-8")[:-1])
   print(data)
   print("got cards")
   
-  # line_feed = b'10'
-  # str += ""
-  # # 0 is [, 1 is our line feed
-  # for i in range(2, len(bytes)):
-  #   if bytes[i] == line_feed:
-  #     print()
-  #   else:
-  #   str += bytes[i]
     
   
 
