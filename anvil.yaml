@@ -1,13 +1,105 @@
 dependencies: []
 services:
 - source: /runtime/services/tables.yml
-  client_config: {}
+  client_config: {enable_v2: false}
   server_config: {}
 startup: {type: form, module: Home}
 package_name: DSML
 allow_embedding: false
 name: DSML
-runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
+runtime_options:
+  version: 2
+  client_version: '3'
+  server_version: python3-full
+  server_spec: {base: python310-minimal}
+  server_spec_disabled: {requirements: '', base: python310-minimal}
 metadata: {title: David Darigan Data Science & Machine Learning Portfolio, description: A Portfolio of My Data Science Projects}
 startup_form: null
+db_schema:
+  cards:
+    client: none
+    server: full
+    columns:
+    - name: id
+      admin_ui: {width: 200, order: 0}
+      type: string
+    - name: name
+      admin_ui: {width: 200, order: 1}
+      type: string
+    - name: released_at
+      admin_ui: {width: 200, order: 2}
+      type: string
+    - name: uri
+      admin_ui: {width: 200, order: 3}
+      type: string
+    - name: mana_cost
+      admin_ui: {width: 200, order: 4}
+      type: string
+    - name: cmc
+      admin_ui: {width: 200, order: 5}
+      type: number
+    - name: type_line
+      admin_ui: {width: 200, order: 6}
+      type: string
+    - name: oracle_text
+      admin_ui: {width: 200, order: 7}
+      type: string
+    - name: power
+      admin_ui: {width: 200, order: 8}
+      type: number
+    - name: toughness
+      admin_ui: {width: 200, order: 9}
+      type: number
+    - name: colors
+      admin_ui: {width: 200, order: 10}
+      type: simpleObject
+    - name: keywords
+      admin_ui: {width: 200, order: 11}
+      type: simpleObject
+    - name: legalities
+      admin_ui: {width: 200, order: 12}
+      type: simpleObject
+    - name: reserved
+      admin_ui: {width: 200, order: 13}
+      type: bool
+    - name: foil
+      admin_ui: {width: 200, order: 14}
+      type: bool
+    - name: nonfoil
+      admin_ui: {width: 200, order: 15}
+      type: bool
+    - name: finishes
+      admin_ui: {width: 200, order: 16}
+      type: simpleObject
+    - name: promo
+      admin_ui: {width: 200, order: 17}
+      type: bool
+    - name: reprint
+      admin_ui: {width: 200, order: 18}
+      type: bool
+    - name: variation
+      admin_ui: {width: 200, order: 19}
+      type: bool
+    - name: set_id
+      admin_ui: {width: 200, order: 20}
+      type: string
+    - name: rarity
+      admin_ui: {width: 200, order: 21}
+      type: string
+    - name: full_art
+      admin_ui: {width: 200, order: 22}
+      type: bool
+    - name: usd
+      admin_ui: {width: 200, order: 23}
+      type: number
+    - name: usd_foil
+      admin_ui: {width: 200, order: 24}
+      type: number
+    - name: eur
+      admin_ui: {width: 200, order: 25}
+      type: number
+    - name: eur_foil
+      admin_ui: {width: 200, order: 26}
+      type: number
+    title: Cards
 renamed: true

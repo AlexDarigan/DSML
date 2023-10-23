@@ -1,3 +1,6 @@
+import anvil.tables as tables
+import anvil.tables.query as q
+from anvil.tables import app_tables
 import anvil.server
 
 import pandas
@@ -11,7 +14,7 @@ from io import BytesIO
 
 @anvil.server.callable()
 def runBackground():
-  task = anvil.server.launch_background_task('getData')
+  task = anvil.server.launch_background_task('getBulkCardData')
   if task.is_completed():
     print("completed")
     print(task.get_return_value())
@@ -31,27 +34,95 @@ def runBackground():
   return task
     
 @anvil.server.background_task
-def getData():
-  response = requests.get("https://api.scryfall.com/bulk-data/default-cards") # The download uri this points to is a json file with over 400,000 files.
-  if response.status_code != 200:
-    print("Response failed with status code: " + str(response.status_code))
-  data = response.json()
-  if data:
-    print(data)
-  download = data["download_uri"]
-  downloaded = requests.get(download) #, stream=True)
-  if downloaded.status_code != 200:
-    print("err")
-  lines = []
-  line_num = 0
-  for line in downloaded.iter_lines():
-    if len(line) == 1:
-      continue
-    source = json.loads(line.decode("utf-8")[:-1])
-    print(json.loads(line.decode("utf-8")[:-1]))
-    line_num += 1
-  print(line_num)
-  print("got cards")
-  return "Hello World"
+def getBulkCardData():
+    # Requesting link for bulk English card data
+    response = requests.get("https://api.scryfall.com/bulk-data/default-cards") # The download uri this points to is a json file with over 400,000 files.
+    if response.status_code != 200:
+        print("Response failed with status code: " + str(response.status_code))
+        return response.status_code
+    download_link = response.json()["download_uri"]
+    downloaded = requests.get(download_link, stream=True)
+    if downloaded.status_code != 200:
+        return response.status_code
+    
+    # Processing Card Records
+    records = 0
+    for line in downloaded.iter_lines():
+        # Skipping '[' & ']'
+        if len(line) == 1:
+            continue
+        cardId, card = add_card(json.loads(line.decode("UTF8").rstrip(',')))
+        card_row_exists(cardId)
+        records += 1
+        break
+    return records
 
-  
+def card_row_exists(cardId):
+  row = app_tables.cards.search(id=cardId)
+  print(row)
+# Double Check CMC, TypeLine & Oracle Text
+def add_card(card):
+    newCard = {
+        "id": card["id"],
+        "name": card["name"],
+        "released_at": card["released_at"],
+        "uri": card["uri"],
+        "mana_cost": card["mana_cost"],
+        "cmc": int(card["cmc"]),
+        "type_line": card["type_line"],
+        "oracle_text": card["oracle_text"],
+        "power": card["power"],
+        "toughness": card["toughness"],
+        "colors": card["colors"],
+        "keywords": card["keywords"],
+        "legalities": {
+            "standard": card["legalities"]["standard"],
+            "modern": card["legalities"]["modern"],
+            "legacy": card["legalities"]["legacy"],
+            "vintage": card["legalities"]["vintage"],
+        },
+        "reserved": card["reserved"],
+        "foil": card["foil"],
+        "nonfoil": card["nonfoil"],
+        "finishes": card["finishes"],
+        "promo": card["promo"],
+        "reprint": card["reprint"],
+        "variation": card["variation"],
+        "set_id": card["set_id"],
+        "rarity": card["rarity"],
+        "full_art": card["full_art"],
+        "usd": card["prices"]["usd"],
+        "usd_foil": card["prices"]["usd_foil"],
+        "eur": card["prices"]["eur"],
+        "eur_foil": card["prices"]["eur_foil"],
+    }
+    return (newCard["id"], newCard)
+    
+  # app_tables.cards.add_row(id=newCard["id"],
+    #                         name=newCard["name"],
+    #                         released_at=card["released_at"],
+    #                         uri=card["uri"],
+    #                         mana_cost=card["mana_cost"],
+    #                         cmc=int(card["cmc"]),
+    #                         type_line=card["type_line"],
+    #                         oracle_text=card["oracle_text"],
+    #                         power=int(card["power"]),
+    #                         toughness=int(card["toughness"]),
+    #                         colors=card["colors"],
+    #                         keywords=card["keywords"],
+    #                         legalities=card["legalities"],
+    #                         reserved=card["reserved"],
+    #                         foil=card["foil"],
+    #                         nonfoil=card["nonfoil"],
+    #                         finishes=card["finishes"],
+    #                         promo=card["promo"],
+    #                         reprint=card["reprint"],
+    #                         variation=card["variation"],
+    #                         set_id = card["set_id"],
+    #                         rarity = card["rarity"],
+    #                         full_art = card["full_art"],
+    #                         usd = float(card["prices"]["usd"]),
+    #                         usd_foil = float(card["prices"]["usd_foil"]),
+    #                         eur = float(card["prices"]["eur"]),
+    #                         eur_foil = float(card["prices"]["eur_foil"]))
+    #return (newCard["id"], newCard)
