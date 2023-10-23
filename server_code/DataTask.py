@@ -48,7 +48,7 @@ def getBulkCardData():
     if downloaded.status_code != 200:
         return response.status_code
 
-    row = app_tables.population.add_row(DateTime=datetime.now(), records=0, new_records=0)
+    row = app_tables.population.add_row(start=datetime.now(), records=0, new_records=0)
     # Processing Card Records
     records = 0
     for line in downloaded.iter_lines():
@@ -60,7 +60,7 @@ def getBulkCardData():
           update_row(card)
           row["last_add"] = datetime.now()
         else:
-          newRecord += add_card(card)
+          newRecord = add_card(card)
           row["new_records"] += newRecord
         row['records'] += 1
         row["last_add"] = datetime.now()
