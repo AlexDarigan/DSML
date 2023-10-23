@@ -47,6 +47,7 @@ def getData():
   for line in downloaded.iter_lines():
     if len(line) == 1:
       continue
+    source = json.loads(line.decode("utf-8")[:-1])
     print(json.loads(line.decode("utf-8")[:-1]))
     line_num += 1
   print(line_num)
