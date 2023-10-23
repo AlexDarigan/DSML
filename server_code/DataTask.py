@@ -54,7 +54,12 @@ def getData():
     print("err")
   print(dir(downloaded))
   print("getting cards")
-  cards = downloaded.json()
+  i = 0
+  for line in downloaded.iter_lines():
+    print(line.decode("utf-8"))
+    i += 1
+    if i > 10:
+      break
   print("got cards")
   
   # line_feed = b'10'
