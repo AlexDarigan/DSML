@@ -65,7 +65,7 @@ def card_row_exists(cardId):
 # Double Check CMC, TypeLine & Oracle Text
 # Some cards are double-sided, so right now we're just going to skip any cards with "transform keyword"
 def add_card(card):
-  if card.has_key("card_faces"):
+  if "card_faces" in card:
     # Skipping double-faced cards for now
     return
   print(card["name"])
