@@ -46,7 +46,7 @@ def getData():
   print(downloaded.is_complete())
   print(downloaded.content_type)
   bytes = downloaded.get_bytes()
-  for i in 10:
+  for i in range(0, 10):
     print(bytes[i])
   
 
