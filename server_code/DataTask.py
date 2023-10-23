@@ -43,7 +43,7 @@ def getData():
   # downloaded = anvil.http.request(download)  # An API that provides slow responses
   if downloaded.status_code != 200:
     print("err")
-  df = pandas.read_csv(BytesIO(downloaded.content))
+  df = pandas.read_json(BytesIO(downloaded.content))
   print(df)
   
   # i = 0
