@@ -2,6 +2,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
+from pandas import pandas as pd
 
 # This is used to access our prefiltered data
 @anvil.server.callable
@@ -14,3 +15,8 @@ def get_color_distribution():
   white = len(app_tables.cards.search(colors=["W"]))
   colorless = len(app_tables.cards.search(colors=[]))
   return (["Red", "Blue", "Black", "Green", "White", "Colorless"], [red, blue, green, black, white, colorless])
+
+@anvil.server.callable
+def do_pandas():
+  df = pd.DataFrame(app_tables.cards.search())
+  print(df.head())

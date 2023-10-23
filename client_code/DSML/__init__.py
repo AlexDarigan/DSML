@@ -21,5 +21,10 @@ class DSML(DSMLTemplate):
         values=values
       )
     ]
+
+  def outlined_button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    anvil.server.call('do_pandas')
+
   
 
