@@ -7,6 +7,30 @@ components:
   properties: {}
   name: content_panel
   layout_properties: {slot: default}
+  components:
+  - name: outlined_card_1
+    properties: {role: outlined-card}
+    type: ColumnPanel
+    layout_properties: {grid_position: 'WEGTRM,OYYTFE'}
+    components:
+    - name: label_2
+      properties: {text: Color Distribution}
+      type: Label
+      layout_properties: {grid_position: 'LETEWE,EPXRJC'}
+    - name: column_panel_1
+      properties: {}
+      type: ColumnPanel
+      layout_properties: {grid_position: 'DVFCWU,IALCIT'}
+      components:
+      - name: colors_plot
+        properties: {}
+        type: Plot
+        layout_properties: {grid_position: 'KHFMVZ,WLNHSU'}
+    - name: color_distribute_button
+      properties: {text: Check Color Distribution}
+      type: Button
+      layout_properties: {grid_position: 'UGIJHO,XORJBD'}
+      event_bindings: {click: color_distribute_button_click}
 - type: FlowPanel
   properties: {}
   name: navbar_links

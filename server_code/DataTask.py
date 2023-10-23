@@ -11,6 +11,9 @@ import sys
 import anvil.http
 from io import BytesIO
 
+@anvil.server.callable
+def countRows():
+  print(len(app_tables.cards.search()))
 
 @anvil.server.callable()
 def runBackground():

@@ -4,19 +4,13 @@ from anvil.tables import app_tables
 import anvil.server
 
 # This is used to access our prefiltered data
-
-# This is a server module. It runs on the Anvil server,
-# rather than in the user's browser.
-#
-# To allow anvil.server.call() to call functions here, we mark
-# them with @anvil.server.callable.
-# Here is an example - you can replace it with your own:
-#
-# @anvil.server.callable
-# def say_hello(name):
-#   print("Hello, " + name + "!")
-#   return 42
-#
-
-# 1) Get Data
-# 2) 
+@anvil.server.callable
+def get_color_distribution():
+  cards = app_tables.cards.search()
+  red = len(app_tables.cards.search(colors=["R"]))
+  blue = len(app_tables.cards.search(colors=["U"]))
+  green = len(app_tables.cards.search(colors=["G"]))
+  black = len(app_tables.cards.search(colors=["B"]))
+  white = len(app_tables.cards.search(colors=["W"]))
+  colorless = len(app_tables.cards.search(colors=[]))
+  return (["Red", "Blue", "Black", "Green", "White", "Colorless"], [red, blue, green, black, white, colorless])

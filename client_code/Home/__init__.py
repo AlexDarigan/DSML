@@ -18,3 +18,8 @@ class Home(HomeTemplate):
   #anvil.server.call('runTask')
     #anvil.server.launch_background_task("runTask")
 
+  def outlined_button_2_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    anvil.server.call('countRows')
+
+
