@@ -40,7 +40,6 @@ def getData():
     print(data)
   download = data["download_uri"]
   downloaded = requests.get(download) #, stream=True)
-  # downloaded = anvil.http.request(download)  # An API that provides slow responses
   if downloaded.status_code != 200:
     print("err")
   lines = []
@@ -48,17 +47,10 @@ def getData():
   for line in downloaded.iter_lines():
     if len(line) == 1:
       continue
-    #data.append(json.loads(line.decode("utf-8")[:-1]))
-    #lines.append(line.decode("utf-8")[:-1])
-
-    print(line.decode("utf-8")[:-1])
+    print(json.loads(line.decode("utf-8")[:-1]))
     line_num += 1
-    # if line_num > 1000:
-    #   break
   print(line_num)
   print("got cards")
-  
-    
   return "Hello World"
 
   
