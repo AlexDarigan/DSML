@@ -57,7 +57,7 @@ def getBulkCardData():
         else:
           add_card(card)
         records += 1
-        break
+    print(f'processed {records} records')
     return records
 
 def card_row_exists(cardId):
@@ -125,15 +125,20 @@ def add_card(card):
                           set_id = card["set_id"],
                           rarity = card["rarity"],
                           full_art = card["full_art"],
-                          usd = float(card["usd"]),
-                          usd_foil = float(card["usd_foil"]),
-                          eur = float(card["eur"]),
-                          eur_foil = float(card["eur_foil"]))
+                          usd = to_float(card["usd"]),
+                          usd_foil = to_float(card["usd_foil"]),
+                          eur = to_float(card["eur"]),
+                          eur_foil = to_float(card["eur_foil"]))
 
 def update_row(cardId, card):
   row = app_tables.cards.search(id=cardId)[0]
-  row["usd"] = float(card["usd"])
-  row["usd_foil"] = float(card["usd_foil"])
-  row["eur"] = float(card["eur"])
-  row["eur_foil"] = float(card["eur_foil"])
+  row["usd"] = to_float(card["usd"])
+  row["usd_foil"] = to_float(card["usd_foil"])
+  row["eur"] = to_float(card["eur"])
+  row["eur_foil"] = to_float(card["eur_foil"])
+
+def to_float(source):
+  if source is None:
+    return 0.0
+  return float(source)
   
