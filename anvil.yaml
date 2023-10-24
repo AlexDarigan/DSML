@@ -8,7 +8,7 @@ scheduled_tasks:
 dependencies: []
 services:
 - source: /runtime/services/tables.yml
-  client_config: {enable_v2: false}
+  client_config: {enable_v2: true}
   server_config: {}
 startup: {type: form, module: Home}
 package_name: DSML
