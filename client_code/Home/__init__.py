@@ -1,5 +1,7 @@
 from ._anvil_designer import HomeTemplate
 from anvil import *
+import anvil.google.auth, anvil.google.drive
+from anvil.google.drive import app_files
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
@@ -14,7 +16,8 @@ class Home(HomeTemplate):
 
   def outlined_button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
-    anvil.server.call('runBackground')  
+    anvil.server.call('importCSV')
+  #  anvil.server.call('runBackground')  
   #anvil.server.call('runTask')
     #anvil.server.launch_background_task("runTask")
 
