@@ -1,3 +1,8 @@
+import anvil.tables as tables
+import anvil.tables.query as q
+from anvil.tables import app_tables
+import anvil.files
+from anvil.files import data_files
 # Commenting this out because it isn't quite functional yet
 
 

@@ -9,7 +9,10 @@ dependencies: []
 services:
 - source: /runtime/services/tables.yml
   client_config: {enable_v2: false}
-  server_config: {}
+  server_config: {auto_create_missing_columns: true}
+- source: /runtime/services/anvil/files.yml
+  client_config: {}
+  server_config: {file_table: files}
 startup: {type: form, module: Home}
 package_name: DSML
 allow_embedding: false
@@ -23,137 +26,10 @@ runtime_options:
 metadata: {title: David Darigan Data Science & Machine Learning Portfolio, description: A Portfolio of My Data Science Projects}
 startup_form: null
 db_schema:
-  population:
+  cards:
     client: none
     server: full
-    columns:
-    - name: start
-      admin_ui: {order: 0, width: 200}
-      type: datetime
-    - name: records
-      admin_ui: {width: 200, order: 1}
-      type: number
-    - name: new_records
-      admin_ui: {width: 200, order: 2}
-      type: number
-    - name: last_add
-      admin_ui: {order: 3, width: 200}
-      type: datetime
-    title: Population
-  cardsold:
-    client: none
-    server: full
-    columns:
-    - name: id
-      admin_ui: {width: 200, order: 0}
-      type: string
-    - name: name
-      admin_ui: {width: 200, order: 1}
-      type: string
-    - name: uri
-      admin_ui: {width: 200, order: 3}
-      type: string
-    - name: mana_cost
-      admin_ui: {width: 200, order: 4}
-      type: string
-    - name: cmc
-      admin_ui: {width: 200, order: 5}
-      type: number
-    - name: type_line
-      admin_ui: {width: 200, order: 6}
-      type: string
-    - name: oracle_text
-      admin_ui: {width: 200, order: 7}
-      type: string
-    - name: colors
-      admin_ui: {width: 200, order: 10}
-      type: simpleObject
-    - name: keywords
-      admin_ui: {width: 200, order: 11}
-      type: simpleObject
-    - name: legalities
-      admin_ui: {width: 200, order: 12}
-      type: simpleObject
-    - name: reserved
-      admin_ui: {width: 200, order: 13}
-      type: bool
-    - name: foil
-      admin_ui: {width: 200, order: 14}
-      type: bool
-    - name: nonfoil
-      admin_ui: {width: 200, order: 15}
-      type: bool
-    - name: finishes
-      admin_ui: {width: 200, order: 16}
-      type: simpleObject
-    - name: promo
-      admin_ui: {width: 200, order: 17}
-      type: bool
-    - name: reprint
-      admin_ui: {width: 200, order: 18}
-      type: bool
-    - name: variation
-      admin_ui: {width: 200, order: 19}
-      type: bool
-    - name: set_id
-      admin_ui: {width: 200, order: 20}
-      type: string
-    - name: rarity
-      admin_ui: {width: 200, order: 21}
-      type: string
-    - name: full_art
-      admin_ui: {width: 200, order: 22}
-      type: bool
-    - name: usd
-      admin_ui: {width: 200, order: 23}
-      type: number
-    - name: usd_foil
-      admin_ui: {width: 200, order: 24}
-      type: number
-    - name: eur
-      admin_ui: {width: 200, order: 25}
-      type: number
-    - name: eur_foil
-      admin_ui: {width: 200, order: 26}
-      type: number
-    - name: power
-      admin_ui: {width: 200, order: 27}
-      type: string
-    - name: toughness
-      admin_ui: {width: 200, order: 28}
-      type: string
-    - name: red
-      admin_ui: {order: 29, width: 200}
-      type: bool
-    - name: blue
-      admin_ui: {order: 30, width: 200}
-      type: bool
-    - name: green
-      admin_ui: {order: 31, width: 200}
-      type: bool
-    - name: white
-      admin_ui: {order: 32, width: 200}
-      type: bool
-    - name: black
-      admin_ui: {order: 33, width: 200}
-      type: bool
-    - name: colorless
-      admin_ui: {order: 34, width: 200}
-      type: bool
-    - name: standard
-      admin_ui: {order: 35, width: 200}
-      type: bool
-    - name: modern
-      admin_ui: {order: 36, width: 200}
-      type: bool
-    - name: legacy
-      admin_ui: {order: 37, width: 200}
-      type: bool
-    - name: vintage
-      admin_ui: {order: 38, width: 200}
-      type: bool
-    - name: released_at
-      admin_ui: {width: 200, order: 39}
-      type: date
-    title: CardsOld
+    columns: []
+    title: cards
+uplink_visible: true
 renamed: true
