@@ -29,7 +29,106 @@ db_schema:
   cards:
     client: none
     server: full
-    columns: []
+    columns:
+    - name: blue
+      admin_ui: {width: 200}
+      type: bool
+    - name: cmc
+      admin_ui: {width: 200}
+      type: number
+    - name: colorless
+      admin_ui: {width: 200}
+      type: bool
+    - name: eur
+      admin_ui: {width: 200}
+      type: number
+    - name: eur_foil
+      admin_ui: {width: 200}
+      type: number
+    - name: foil
+      admin_ui: {width: 200}
+      type: bool
+    - name: full_art
+      admin_ui: {width: 200}
+      type: bool
+    - name: green
+      admin_ui: {width: 200}
+      type: bool
+    - name: id
+      admin_ui: {width: 200}
+      type: string
+    - name: keywords
+      admin_ui: {width: 200}
+      type: string
+    - name: legacy
+      admin_ui: {width: 200}
+      type: bool
+    - name: mana_cost
+      admin_ui: {width: 200}
+      type: string
+    - name: modern
+      admin_ui: {width: 200}
+      type: bool
+    - name: name
+      admin_ui: {width: 200}
+      type: string
+    - name: nonfoil
+      admin_ui: {width: 200}
+      type: bool
+    - name: oracle_text
+      admin_ui: {width: 200}
+      type: string
+    - name: promo
+      admin_ui: {width: 200}
+      type: bool
+    - name: rarity
+      admin_ui: {width: 200}
+      type: string
+    - name: red
+      admin_ui: {width: 200}
+      type: bool
+    - name: released_at
+      admin_ui: {width: 200}
+      type: string
+    - name: reprint
+      admin_ui: {width: 200}
+      type: bool
+    - name: reserved
+      admin_ui: {width: 200}
+      type: bool
+    - name: set_id
+      admin_ui: {width: 200}
+      type: string
+    - name: standard
+      admin_ui: {width: 200}
+      type: bool
+    - name: type_line
+      admin_ui: {width: 200}
+      type: string
+    - name: uri
+      admin_ui: {width: 200}
+      type: string
+    - name: usd
+      admin_ui: {width: 200}
+      type: number
+    - name: usd_foil
+      admin_ui: {width: 200}
+      type: number
+    - name: variation
+      admin_ui: {width: 200}
+      type: bool
+    - name: vintage
+      admin_ui: {width: 200}
+      type: bool
+    - name: white
+      admin_ui: {width: 200}
+      type: bool
+    - name: power
+      admin_ui: {width: 200, order: 33}
+      type: number
+    - name: toughness
+      admin_ui: {width: 200, order: 34}
+      type: number
     title: cards
 uplink_visible: true
 renamed: true
