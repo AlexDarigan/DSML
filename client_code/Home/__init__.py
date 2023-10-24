@@ -25,4 +25,9 @@ class Home(HomeTemplate):
     """This method is called when the button is clicked"""
     anvil.server.call('countRows')
 
+  def outlined_button_3_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    anvil.server.call("download_file")
+
+
 

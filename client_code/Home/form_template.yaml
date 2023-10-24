@@ -18,6 +18,11 @@ components:
     type: Button
     layout_properties: {grid_position: 'ZDJGTE,OKYIWP'}
     event_bindings: {click: outlined_button_2_click}
+  - name: outlined_button_3
+    properties: {text: outlined_button_3, role: outlined-button}
+    type: Button
+    layout_properties: {grid_position: 'CCASCI,EHZGVW'}
+    event_bindings: {click: outlined_button_3_click}
 - type: FlowPanel
   properties: {}
   name: navbar_links
