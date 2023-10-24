@@ -23,7 +23,24 @@ runtime_options:
 metadata: {title: David Darigan Data Science & Machine Learning Portfolio, description: A Portfolio of My Data Science Projects}
 startup_form: null
 db_schema:
-  cards:
+  population:
+    client: none
+    server: full
+    columns:
+    - name: start
+      admin_ui: {order: 0, width: 200}
+      type: datetime
+    - name: records
+      admin_ui: {width: 200, order: 1}
+      type: number
+    - name: new_records
+      admin_ui: {width: 200, order: 2}
+      type: number
+    - name: last_add
+      admin_ui: {order: 3, width: 200}
+      type: datetime
+    title: Population
+  cardsold:
     client: none
     server: full
     columns:
@@ -138,22 +155,5 @@ db_schema:
     - name: released_at
       admin_ui: {width: 200, order: 39}
       type: date
-    title: Cards
-  population:
-    client: none
-    server: full
-    columns:
-    - name: start
-      admin_ui: {order: 0, width: 200}
-      type: datetime
-    - name: records
-      admin_ui: {width: 200, order: 1}
-      type: number
-    - name: new_records
-      admin_ui: {width: 200, order: 2}
-      type: number
-    - name: last_add
-      admin_ui: {order: 3, width: 200}
-      type: datetime
-    title: Population
+    title: CardsOld
 renamed: true
