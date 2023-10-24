@@ -45,30 +45,28 @@ def getBulkCardData():
         return response.status_code
     download_link = response.json()["download_uri"]
 
-    downloaded = anvil.http.request(download_link, json=True)
-    print(len(downloaded))
 
-    # downloaded = requests.get(download_link, stream=True)
-    # if downloaded.status_code != 200:
-    #     return response.status_code
+    downloaded = requests.get(download_link, stream=True)
+    if downloaded.status_code != 200:
+        return response.status_code
 
-    # row = app_tables.population.add_row(start=datetime.now(), records=0, new_records=0)
-    # # Processing Card Records
-    # records = 0
-    # for line in downloaded.iter_lines():
-    #     # Skipping '[' & ']'
-    #     if len(line) == 1:
-    #         continue
-    #     card = json.loads(line.decode("UTF8").rstrip(','))
-    #     if card_row_exists(card["id"]):
-    #       update_row(card)
-    #       row["last_add"] = datetime.now()
-    #     else:
-    #       newRecord = add_card(card)
-    #       row["new_records"] += newRecord
-    #     row['records'] += 1
-    #     row["last_add"] = datetime.now()
-    # return records
+    row = app_tables.population.add_row(start=datetime.now(), records=0, new_records=0)
+    # Processing Card Records
+    records = 0
+    for line in downloaded.iter_lines():
+        # Skipping '[' & ']'
+        if len(line) == 1:
+            continue
+        card = json.loads(line.decode("UTF8").rstrip(','))
+        if card_row_exists(card["id"]):
+          update_row(card)
+          row["last_add"] = datetime.now()
+        else:
+          newRecord = add_card(card)
+          row["new_records"] += newRecord
+        row['records'] += 1
+        row["last_add"] = datetime.now()
+    return records
 
 def card_row_exists(cardId):
   return len(app_tables.cards.search(id=cardId)) > 0
