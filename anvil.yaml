@@ -143,6 +143,12 @@ db_schema:
     - name: count
       admin_ui: {width: 200, order: 0}
       type: number
+    - name: end
+      admin_ui: {width: 200}
+      type: datetime
+    - name: start
+      admin_ui: {width: 200}
+      type: datetime
     title: records
 uplink_visible: true
 renamed: true
