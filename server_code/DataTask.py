@@ -5,6 +5,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.files
 from anvil.files import data_files
+import timeit
 # Commenting this out because it isn't quite functional yet
 
 
@@ -21,10 +22,13 @@ from anvil.files import data_files
 # import anvil.http
 # from datetime import datetime
 
-# @anvil.server.callable
-# def countRows():
-#   print(len(app_tables.cards.search()))
-
+@anvil.server.callable
+def countRows():
+  start = timeit.timeit()
+  rows = app_tables.cards.search()
+  print(len(rows))
+  print(start)
+  
 # @anvil.server.callable()
 # def runBackground():
 #   task = anvil.server.launch_background_task('getBulkCardData')
