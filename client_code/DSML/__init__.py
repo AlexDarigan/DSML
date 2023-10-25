@@ -12,11 +12,9 @@ class DSML(DSMLTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
-
-  def color_distribute_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
     labels, values = anvil.server.call('get_color_distribution')
+    print(labels)
+    print(values)
     self.colors_plot.data = [
       go.Pie(
         labels=labels,
@@ -24,8 +22,8 @@ class DSML(DSMLTemplate):
       )
     ]
 
-  def outlined_button_1_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    anvil.server.call('do_pandas')
-  
+
+
+
+
 
