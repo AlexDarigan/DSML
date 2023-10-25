@@ -3,17 +3,20 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import timeit
 from datetime import datetime
+import pandas as pd
 
 # This is used to access our prefiltered data
 @anvil.server.callable
 def get_color_distribution():
   timer = timeit.timeit()
-  blue = len(app_tables.cards.search(blue=True))
-  red = len(app_tables.cards.search(red=True))
-  green = len(app_tables.cards.search(green=True))
-  black = len(app_tables.cards.search(black=True))
-  white = len(app_tables.cards.search(white=True))
-  colorless = len(app_tables.cards.search(colorless=True))
+  print(app_tables.cards.search().to_csv().get_url())
+  df = pd.read_csv(app_tables.cards.search().to_csv())
+  blue = 0 # len(app_tables.cards.search(blue=True).to_csv())
+  red = 0 #len(app_tables.cards.search(red=True).to_csv())
+  green = 0 # len(app_tables.cards.search(green=True).to_csv())
+  black = 0 #len(app_tables.cards.search(black=True).to_csv())
+  white = 0 #len(app_tables.cards.search(white=True).to_csv())
+  colorless = 0 # len(app_tables.cards.search(colorless=True).to_csv())
   return (["Red", "Blue", "Black", "Green", "White", "Colorless"], [red, blue, green, black, white, colorless])
 
 @anvil.server.callable

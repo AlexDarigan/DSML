@@ -14,9 +14,10 @@ class DSML(DSMLTemplate):
     self.init_components(**properties)
 
     color, color_count = anvil.server.call('get_color_distribution')
-    year, year_count = anvil.server.call('get_cards_released_per_year')
-
-
+    #year, year_count = anvil.server.call('get_cards_released_per_year')
+    #color, color_count = (["red", "green"], [45, 10, 9])
+    year, year_count = (["1993, 1994"], [399, 994, 1992])
+    
     self.colors_plot.layout = {
        "title": "Count of cards released by year",
     }
