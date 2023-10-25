@@ -1,22 +1,14 @@
 from ._anvil_designer import DSMLTemplate
 from anvil import *
-import anvil.google.auth, anvil.google.drive
-from anvil.google.drive import app_files
-import anvil.tables as tables
-import anvil.tables.query as q
-from anvil.tables import app_tables
 import plotly.graph_objects as go
-import anvil.server
 
 class DSML(DSMLTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    color, color_count = anvil.server.call('get_color_distribution')
-    #year, year_count = anvil.server.call('get_cards_released_per_year')
-    #color, color_count = (["red", "green"], [45, 10, 9])
-    year, year_count = (["1993, 1994"], [399, 994, 1992])
+    color = ["red", "green", "blue", "black", "white", "colorless"]
+    color_count = [15541, 16051, 15404, 15714, 15972, 19146]
     
     self.colors_plot.layout = {
        "title": "Count of cards released by year",
@@ -29,7 +21,10 @@ class DSML(DSMLTemplate):
       )
     ]
 
-
+    year = [*range(1993, 2023)]
+    year_count = [1596, 1643, 1728, 1020, 1607, 1162, 1639, 913, 1584, 823, 1610, 946, 
+                  2120, 1107, 1494, 1310, 1538, 1787, 2085, 1461, 2080, 2806, 2747, 
+                  2841, 3427, 3746, 4754, 6557, 6972, 11564, 8788, 124]
     self.release_plot.layout = {
       "title": "Count of cards released by year",
       "xaxis": {
