@@ -90,9 +90,6 @@ db_schema:
     - name: red
       admin_ui: {width: 200}
       type: bool
-    - name: released_at
-      admin_ui: {width: 200}
-      type: string
     - name: reprint
       admin_ui: {width: 200}
       type: bool
@@ -132,6 +129,9 @@ db_schema:
     - name: toughness
       admin_ui: {width: 200, order: 34}
       type: number
+    - name: released_at
+      admin_ui: {width: 200, order: 35}
+      type: date
     title: cards
   records:
     client: none

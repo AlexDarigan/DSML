@@ -29,5 +29,10 @@ class Home(HomeTemplate):
     """This method is called when the button is clicked"""
     anvil.server.call("download_file")
 
+  def outlined_button_4_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    anvil.server.call("hello")
+
+
 
 

@@ -23,6 +23,11 @@ components:
     type: Button
     layout_properties: {grid_position: 'CCASCI,EHZGVW'}
     event_bindings: {click: outlined_button_3_click}
+  - name: outlined_button_4
+    properties: {text: outlined_button_4, role: outlined-button}
+    type: Button
+    layout_properties: {grid_position: 'FPHYYT,NTASVP'}
+    event_bindings: {click: outlined_button_4_click}
 - type: FlowPanel
   properties: {}
   name: navbar_links
