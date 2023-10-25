@@ -12,16 +12,44 @@ class DSML(DSMLTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    labels, values = anvil.server.call('get_color_distribution')
-    print(labels)
-    print(values)
+
+    color, color_count = anvil.server.call('get_color_distribution')
+    year, year_count = anvil.server.call('get_cards_released_per_year')
+
+
+    self.colors_plot.layout = {
+       "title": "Count of cards released by year",
+    }
+    
     self.colors_plot.data = [
       go.Pie(
-        labels=labels,
-        values=values
+        labels=color,
+        values=color_count
       )
     ]
 
+
+    self.release_plot.layout = {
+      "title": "Count of cards released by year",
+      "xaxis": {
+        "title": 'Count'
+      },
+      "yaxis": {
+        "title": "Year",
+        "dtick": 1,
+        "tickmode": "linear",
+        "spacing": 10,
+      }
+    }
+    self.release_plot.data = [
+        go.Bar(
+          dy=1,
+          x = year_count,
+          y = year,
+          orientation="h",
+          name = "Cards released by year",
+        ),
+    ]
 
 
 
