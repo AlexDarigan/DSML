@@ -29,14 +29,13 @@ components:
     type: Label
     layout_properties: {grid_position: 'RNJQRH,PXXUUW'}
   - name: api_design
-    properties: {content: "*You can find more detail on the [REST API](https://github.com/AlexDarigan/DataScience-MachineLearning/wiki)\
-        \ for this Project*\n\nThe primary navigation area of the project will be\
-        \ on the API Hostname as of the projects \nversion at that time.\n\n| Host\
-        \         | Version |\n|--------------|---------|\n| api.hostname | 1    \
-        \   |\n&nbsp;\nThis project will be a set of projects that exist as a single\
-        \ RESTful API. Each project shares the same general following structure\n\n\
-        | Attribute        | Description                                         \
-        \          |\n|------------------|---------------------------------------------------------------|\n\
+    properties: {content: "*You can find more detail on the REST API link in the main\
+        \ menu*\n\nThe primary navigation area of the project will be on the API Hostname\
+        \ as of the projects \nversion at that time.\n\n| Host         | Version |\n\
+        |--------------|---------|\n| api.hostname | 1       |\n&nbsp;\nThis project\
+        \ will be a set of projects that exist as a single RESTful API. Each project\
+        \ shares the same general following structure\n\n| Attribute        | Description\
+        \                                                   |\n|------------------|---------------------------------------------------------------|\n\
         | Title            | The project title                                   \
         \          |\n| Description      | A brief description of the project    \
         \                        |\n| HTTP Route       | The HTTP Route of the project\
@@ -115,11 +114,40 @@ components:
         \ type(x) is list and \"G\" in x)\ndf[\"white\"] = df[\"colors\"].apply(lambda\
         \ x: type(x) is list and \"W\" in x)\ndf[\"black\"] = df[\"colors\"].apply(lambda\
         \ x: type(x) is list and \"B\" in x)\ndf[\"colorless\"] = df[\"colors\"].apply(lambda\
-        \ x: type(x) is list and len(x) == 0)\n```\n&nbsp;\nOne related project to\
-        \ this data is to follow \n```\ndf[\"standard\"] = df[\"legalities.standard\"\
-        ] == \"legal\"\ndf[\"modern\"] = df[\"legalities.modern\"] == \"legal\"\n\
-        df[\"vintage\"] = df[\"legalities.vintage\"] == \"legal\"\ndf[\"legacy\"]\
-        \ = df[\"legalities.legacy\"] == \"legal\"\n```"}
+        \ x: type(x) is list and len(x) == 0)\n```\n&nbsp;\nOne project related to\
+        \ this data is to follow the price trends of certain cards (and predict further\
+        \ trends based on correlative data). One piece of correlated data is which\
+        \ tournament types that cards are legal to use, however there are formats\
+        \ that are various formats but only the following seem to make an impact on\
+        \ a card's value.\n```\ndf[\"standard\"] = df[\"legalities.standard\"] ==\
+        \ \"legal\"\ndf[\"modern\"] = df[\"legalities.modern\"] == \"legal\"\ndf[\"\
+        vintage\"] = df[\"legalities.vintage\"] == \"legal\"\ndf[\"legacy\"] = df[\"\
+        legalities.legacy\"] == \"legal\"\n```\n\n&nbsp;\nWe extract the regular $\
+        \ and \u20ac price and their foiled equivelants (foiled referring to the card\
+        \ having a foil finish). Some cards don't seem to have prices, likely due\
+        \ to being so common that they aren't for sale at all, so for those we just\
+        \ default them to a float of 0.0\n```\ndf[\"usd\"] = pd.to_numeric(df[\"prices.usd\"\
+        ], errors='coerce').fillna(0.0)\ndf[\"usd_foil\"] = pd.to_numeric(df[\"prices.usd_foil\"\
+        ], errors='coerce').fillna(0.0)\ndf[\"eur\"] = pd.to_numeric(df[\"prices.eur\"\
+        ], errors='coerce').fillna(0.0)\ndf[\"eur_foil\"] = pd.to_numeric(df[\"prices.eur_foil\"\
+        ], errors='coerce').fillna(0.0)\n```\n&nbsp;\nSome cards are double-sided\
+        \ which means each set of attributes are doubled with a different set of values.\
+        \ We filtered them out based on the presence of \"//\" in their name string\
+        \ which indicated two names (e.g \" name 1 // name 2\"). This filtered dropped\
+        \ about 800 cards out of 80,000 so the effect on any trend data should be\
+        \ minimal.\n```\nfilter = df.name.apply(lambda x: \"//\" not in x)\ndf = df[filter]\n\
+        ```\n&nbsp;\nFinally, after we have performed our necessary conversions and\
+        \ extracts, one final extraction is performed, reducing the original [85~\
+        \ columns](https://scryfall.com/docs/api/cards) down to 34 columns. This is\
+        \ the data that ends up stored.\n```\ncardtable = pd.DataFrame(data=df, columns=[\"\
+        id\", \"name\", \"released_at\", \"uri\", \"mana_cost\", \"cmc\", \"type_line\"\
+        ,  \n                                         \"oracle_text\", \"power\",\
+        \ \"toughness\", \"red\", \"green\", \"blue\", \"white\", \"black\", \"colorless\"\
+        , \"keywords\",\n                                         \"standard\", \"\
+        modern\", \"vintage\", \"legacy\", \"reserved\", \"foil\", \"nonfoil\",\"\
+        promo\", \"reprint\", \"variation\", \n                                  \
+        \        \"set_id\", \"rarity\", \"full_art\", \"usd\", \"usd_foil\", \"eur\"\
+        , \"eur_foil\"])\n```"}
     type: RichText
     layout_properties: {grid_position: 'YGBEEL,HUTIZN'}
   - name: charts_title
@@ -127,42 +155,95 @@ components:
     type: Label
     layout_properties: {grid_position: 'KLKFBY,KURKJR'}
   - name: rich_text_3
-    properties: {content: 'A
+    properties: {content: 'Below we are getting the count of cards released by year
+        and the distribution of colors among all cards from our preprocessed table,
+        which allows for the charts below.
 
-        B
-
-        C
-
-        D'}
+        '}
     type: RichText
     layout_properties: {grid_position: 'OMEBUL,LAAMPK'}
-  - name: exp_title
-    properties: {text: Opportunities & Challenges, font_size: 18, bold: true}
-    type: Label
-    layout_properties: {grid_position: 'QREEPX,ZMMPVI'}
-  - name: rich_text_6
-    properties: {content: 'A
-
-        B
-
-        C
-
-        D'}
-    type: RichText
-    layout_properties: {grid_position: 'HICSKV,DYMSAH'}
   - name: colors_plot
     properties: {}
     type: Plot
-    layout_properties: {grid_position: 'KIEFUK,CIYYRS'}
+    layout_properties: {grid_position: 'JRXANB,OKPNLL'}
   - name: flow_panel_1
     properties: {}
     type: FlowPanel
-    layout_properties: {grid_position: 'WEGTRM,ELDZDK'}
+    layout_properties: {grid_position: 'MJWILL,KGASUI'}
     components:
     - name: release_plot
       properties: {interactive: false, height: '800'}
       type: Plot
       data_bindings: []
+  - name: rich_text_4
+    properties: {content: '**Code**
+
+
+        The previous charts based on this code
+
+        ```
+
+        # https://stackoverflow.com/questions/52182967/python-pandas-group-by-date-and-count
+
+        cards_released_per_year = cardtable[''released_at''].dt.year.value_counts().sort_index().reset_index()
+
+        cards_released_per_year.columns = [''DATE'',''Count'']
+
+        print(cards_released_per_year)
+
+
+        red = cardtable.red.sum()
+
+        green = cardtable.green.sum()
+
+        blue = cardtable.blue.sum()
+
+        white = cardtable.white.sum()
+
+        black = cardtable.black.sum()
+
+        colorless = cardtable.colorless.sum()
+
+
+        colors = pd.DataFrame([[red, green, blue, black, white, colorless]], columns=["red",
+        "green", "blue", "black", "white", "colorless"])
+
+        print(colors)
+
+        ```'}
+    type: RichText
+    layout_properties: {grid_position: 'KPNOZB,BQZMAT'}
+  - name: exp_title
+    properties: {text: Opportunities & Challenges, font_size: 18, bold: true}
+    type: Label
+    layout_properties: {grid_position: 'QREEPX,ZMMPVI'}
+  - name: rich_text_6
+    properties: {content: '__Opportunities__
+
+
+        - To apply data models against real world changes
+
+        - To examine RESTful API calls at scale
+
+        - To become proficient in data science related technologies
+
+
+        __Challenges__
+
+
+        - Semi-structured data (e.g JSON) needs to be massaged in order to play with
+        structured databases
+
+        - Handling large quantities of data over the network (e.g it takes 4 hours
+        for this data to be upload locally)
+
+        - Accounting for customers emotional “hype” trend creating outliers
+
+        - Prices may be affected by different game formats creating inconsistencies
+
+        - Learning new data science technologies '}
+    type: RichText
+    layout_properties: {grid_position: 'HICSKV,DYMSAH'}
 - type: FlowPanel
   properties: {}
   name: navbar_links

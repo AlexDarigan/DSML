@@ -7,10 +7,72 @@ components:
   properties: {}
   name: content_panel
   layout_properties: {slot: default}
+  components:
+  - name: label_1
+    properties: {text: REST API, bold: true, font_size: 18}
+    type: Label
+    layout_properties: {grid_position: 'BARNJF,RBSPYX'}
+  - name: details
+    properties: {content: '| Host         | Version |
+
+        |--------------|---------|
+
+        | api.hostname | 1       |'}
+    type: RichText
+    layout_properties: {grid_position: 'OFIGNA,ZYOFDQ'}
+  - name: label_2
+    properties: {text: REST Structure, bold: true, font_size: 18}
+    type: Label
+    layout_properties: {grid_position: 'XGETFD,NKFLQJ'}
+  - name: rich_text_2
+    properties: {content: '| Attribute        | Description                                                   |
+
+        |------------------|---------------------------------------------------------------|
+
+        | Title            | The project title                                             |
+
+        | Description      | A brief description of the project                            |
+
+        | HTTP Route       | The HTTP Route of the project                                 |
+
+        | Resources        | A tabled list of HTTP Resources                               |
+
+        | Query Parameters | A optional tabled set of HTTP query parameters                |
+
+        | Technologies     | The technologies used in the project (e.g python)             |
+
+        | Libraries        | The libraries used in the project (e.g pandas)                |
+
+        | Data Sources     | The data sources used for that project (e.g scryfall[4])      |
+
+        | Data Storage     | How and where our transformed data is stored (e.g CSV,
+        Cloud) |
+
+        '}
+    type: RichText
+    layout_properties: {grid_position: 'XCEINT,YMLVIP'}
+    components:
+    - name: label_3
+      properties: {text: REST Projects, bold: true, font_size: 18}
+      type: Label
+      layout_properties: {}
+    - name: rich_text_1
+      properties: {content: "| Project              \t\t\t\t\t\t\t\t\t\t\t\t| HTTP\
+          \ Route | Description                                       |\n|---------------------------------------------------------------------------------------------------------------|------------|---------------------------------------------------|\n\
+          | Statistics          \t\t| /stats     | Get statistics about different\
+          \ card attributes    |\n| Price Trends       \t\t| /trends    | Get the\
+          \ price trend of a specific card            |\n| Price Predictions   \t\t\
+          | /predict   | Predict the future price trend of a specific card |\n|"}
+      type: RichText
+      layout_properties: {}
 - type: FlowPanel
   properties: {}
   name: navbar_links
   layout_properties: {slot: nav-right}
+  components:
+  - name: links_1
+    properties: {}
+    type: form:Links
 - name: menu_1
   properties: {}
   type: form:Menu

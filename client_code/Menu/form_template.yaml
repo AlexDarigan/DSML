@@ -15,5 +15,10 @@ components:
   type: Button
   layout_properties: {grid_position: 'TQYSZY,XJNDSQ'}
   event_bindings: {click: projects_click}
+- name: restapi
+  properties: {text: REST API}
+  type: Button
+  layout_properties: {grid_position: 'PKFCUL,UXFPYD'}
+  event_bindings: {click: restapi_click}
 is_package: true
 custom_component: true

@@ -9,7 +9,7 @@ class DSML(DSMLTemplate):
     self.init_components(**properties)
 
     self.api_design.content = self.api_design.content.replace("api.hostname", anvil.server.get_api_origin())
-
+    
     color = ["red", "green", "blue", "black", "white", "colorless"]
     color_count = [15541, 16051, 15404, 15714, 15972, 19146]
     

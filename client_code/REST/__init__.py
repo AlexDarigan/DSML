@@ -11,5 +11,6 @@ class REST(RESTTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.details.content = self.details.content.replace("api.hostname", anvil.server.get_api_origin())
 
     # Any code you write here will run before the form opens.
