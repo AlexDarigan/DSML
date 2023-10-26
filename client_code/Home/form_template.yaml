@@ -7,7 +7,15 @@ components:
   properties: {}
   name: content_panel
   layout_properties: {slot: default}
-  components: []
+  components:
+  - name: menu_2
+    properties: {}
+    type: form:Menu
+    layout_properties: {grid_position: 'LTGZAQ,YSUSKP'}
+  - name: outlined_button_1
+    properties: {text: outlined_button_1, role: outlined-button}
+    type: Button
+    layout_properties: {grid_position: 'HJKSZA,EWVBNF'}
 - type: FlowPanel
   properties: {}
   name: navbar_links

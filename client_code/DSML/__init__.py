@@ -11,7 +11,7 @@ class DSML(DSMLTemplate):
     color_count = [15541, 16051, 15404, 15714, 15972, 19146]
     
     self.colors_plot.layout = {
-       "title": "Count of cards released by year",
+       "title": "Color Distribution",
     }
     
     self.colors_plot.data = [
@@ -46,6 +46,11 @@ class DSML(DSMLTemplate):
           name = "Cards released by year",
         ),
     ]
+
+  def button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    self.image_1.visible = not self.image_1.visible
+
 
 
 
