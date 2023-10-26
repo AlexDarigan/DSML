@@ -8,16 +8,16 @@ components:
   name: content_panel
   layout_properties: {slot: default}
   components:
-  - name: about_me
-    properties: {text: About Me - David Darigan, bold: true, font_size: 18}
-    type: Label
-    layout_properties: {grid_position: 'NEWPJJ,IGMJTA'}
   - name: outlined_card_1
     properties: {role: elevated-card, background: 'theme:Primary Container', col_spacing: medium,
       spacing_below: small}
     type: ColumnPanel
     layout_properties: {grid_position: 'DNIBEE,KQKHZC', full_width_row: false}
     components:
+    - name: about_me
+      properties: {text: About Me - David Darigan, bold: true, font_size: 18, foreground: 'theme:Primary'}
+      type: Label
+      layout_properties: {grid_position: 'RLXUXQ,JDDMPR'}
     - name: flow_panel_2
       properties: {}
       type: FlowPanel
@@ -34,92 +34,108 @@ components:
             \ in college I have learned and utilized Java, Java Swing, SQL, Javascript,\
             \ PHP, HTML, CSS, C/C++, Assembly 68000 (via Easy68k) and python. \n\n\
             I'm also studying Kotlin, Gradle, Jetpack Compose & Firebase as part of\
-            \ my role as a Google Developers Student Club Team Lead.", background: ''}
+            \ my role as a Google Developers Student Club Team Lead.", background: 'theme:Primary
+            Container', foreground: 'theme:On Primary Container'}
         type: RichText
         layout_properties: {}
-  - name: experience
-    properties: {text: Experience, bold: true, font_size: 18}
-    type: Label
-    layout_properties: {grid_position: 'QICZDC,ZWLVYR'}
+    - name: image_1
+      properties: {source: _/theme/me.png, height: 298, display_mode: shrink_to_fit,
+        spacing_above: none, spacing_below: none}
+      type: Image
+      layout_properties: {grid_position: 'FIEFPV,EOPSSW'}
   - name: column_panel_1
     properties: {}
     type: ColumnPanel
     layout_properties: {grid_position: 'OWHAGT,ZQRPSE'}
     components:
-    - name: dell_title
-      properties: {text: DELL Technologies Undergraduate Internship March 2023 - August 2023,
-        bold: true}
-      type: Label
-      layout_properties: {grid_position: 'HXCAPZ,UMVODW'}
     - name: outlined_card_2
       properties: {role: elevated-card, background: 'theme:Primary Container'}
       type: ColumnPanel
       layout_properties: {grid_position: 'QQVSZJ,CRHGHF'}
       components:
-      - name: rich_text_2
-        properties: {content: "- Contributed to the efforts of the Finance Integration\
-            \ Services Team to support over 150 class 1 financial microservices. \n\
-            \n- Used PowerShell to reduce 2 days of work a year to 30 minutes by automating\
-            \ the task of restaging all applications in each non-production environment.\n\
-            \n- Raised CI / CD Maturity KPI by 12% to reach a total of 76.8% in May\
-            \ from 64.8% in April by applying a number of adjustments to several applications\
-            \ to make them compliant with CI / CD metrics of success. 87.8% was the\
-            \ final score reached as of the end of my internship.\n\n- Reduced over\
-            \ several thousand application vulnerabilities through proper dependency\
-            \ management of each application.\n\n- Applied abstraction enhancements\
-            \ to several applications in order to reduce duplicated code and global\
-            \ variables.\n\n- Utilized GitLab & Spring Configuration Server REST APIs\
-            \ in order to write a feature in Bash to set metadata on applications\
-            \ during the deploy task of the deployment pipeline.", border: '', background: ''}
-        type: RichText
-        layout_properties: {grid_position: 'PBIJRR,CCSUZZ'}
-        data_bindings: []
-  - name: gdsc_lead_title
-    properties: {text: Google Developers Student Club Team Lead 2022 - Present, bold: true}
-    type: Label
-    layout_properties: {grid_position: 'RFUQQQ,IQJWFF'}
-  - name: outlined_card_3
-    properties: {role: elevated-card, background: 'theme:Primary Container'}
-    type: ColumnPanel
-    layout_properties: {grid_position: 'CIJVSN,MATVOT'}
-    components:
-    - name: gdsc_lead_blurb
-      properties: {content: '- Co-ordinate weekly events
+      - name: experience
+        properties: {text: Experience, bold: true, font_size: 18, foreground: 'theme:Primary'}
+        type: Label
+        layout_properties: {grid_position: 'CIOTGM,QTISDK'}
+      - name: outlined_card_7
+        properties: {role: outlined-card, background: 'theme:Secondary Container',
+          foreground: 'theme:On Primary Container'}
+        type: ColumnPanel
+        layout_properties: {grid_position: 'QPVLUT,ZIVCMC'}
+        components:
+        - name: dell_title
+          properties: {text: DELL Technologies Undergraduate Internship March 2023 - August 2023,
+            bold: true}
+          type: Label
+          layout_properties: {grid_position: 'WCNFJW,CQCNJZ'}
+        - name: rich_text_2
+          properties: {content: "- Contributed to the efforts of the Finance Integration\
+              \ Services Team to support over 150 class 1 financial microservices.\
+              \ \n\n- Used PowerShell to reduce 2 days of work a year to 30 minutes\
+              \ by automating the task of restaging all applications in each non-production\
+              \ environment.\n\n- Raised CI / CD Maturity KPI by 12% to reach a total\
+              \ of 76.8% in May from 64.8% in April by applying a number of adjustments\
+              \ to several applications to make them compliant with CI / CD metrics\
+              \ of success. 87.8% was the final score reached as of the end of my\
+              \ internship.\n\n- Reduced over several thousand application vulnerabilities\
+              \ through proper dependency management of each application.\n\n- Applied\
+              \ abstraction enhancements to several applications in order to reduce\
+              \ duplicated code and global variables.\n\n- Utilized GitLab & Spring\
+              \ Configuration Server REST APIs in order to write a feature in Bash\
+              \ to set metadata on applications during the deploy task of the deployment\
+              \ pipeline.", border: '', background: '', foreground: ''}
+          type: RichText
+          layout_properties: {grid_position: 'PGIECN,GSJTPC'}
+          data_bindings: []
+      - name: outlined_card_3
+        properties: {role: elevated-card, background: 'theme:Secondary Container'}
+        type: ColumnPanel
+        layout_properties: {grid_position: 'KYBDFV,VJLKMH'}
+        components:
+        - name: gdsc_lead_title
+          properties: {text: Google Developers Student Club Team Lead 2022 - Present,
+            bold: true, foreground: 'theme:Primary'}
+          type: Label
+          layout_properties: {grid_position: 'HVEEWF,CZHMTX'}
+        - name: gdsc_lead_blurb
+          properties: {content: '- Co-ordinate weekly events
 
 
-          - Communicate fundamental technological ideas to members through presentations
+              - Communicate fundamental technological ideas to members through presentations
 
 
-          - Manage budgeting with the aid of Google Developer Student Club co-ordinators'}
-      type: RichText
-      layout_properties: {grid_position: 'OBYZRF,VVJDSS'}
-  - name: gdsc_core_title
-    properties: {text: Google Developers Student Club Core Team Member 2021 - 2022,
-      bold: true}
-    type: Label
-    layout_properties: {grid_position: 'RPQGVU,UFYYEE'}
-  - name: outlined_card_4
-    properties: {role: elevated-card, background: 'theme:Primary Container'}
-    type: ColumnPanel
-    layout_properties: {grid_position: 'USXNNO,QCJYFU'}
-    components:
-    - name: gdsc_core_blurb
-      properties: {content: '- Create applications in order to demonstrate a diverse
-          range of technologies used in presentations
+              - Manage budgeting with the aid of Google Developer Student Club co-ordinators',
+            foreground: 'theme:On Primary Container'}
+          type: RichText
+          layout_properties: {grid_position: 'OBYZRF,VVJDSS'}
+      - name: outlined_card_4
+        properties: {role: elevated-card, background: 'theme:Secondary Container'}
+        type: ColumnPanel
+        layout_properties: {grid_position: 'FISXZT,QVEMBE'}
+        components:
+        - name: gdsc_core_title
+          properties: {text: Google Developers Student Club Core Team Member 2021 - 2022,
+            bold: true, foreground: 'theme:Primary'}
+          type: Label
+          layout_properties: {grid_position: 'IRUEGD,FAVRAB'}
+        - name: gdsc_core_blurb
+          properties: {content: '- Create applications in order to demonstrate a diverse
+              range of technologies used in presentations
 
 
-          - Assist other core members with the organization of events'}
-      type: RichText
-      layout_properties: {grid_position: 'AKMRBQ,HWDVKE'}
-  - name: education_title
-    properties: {text: Education, font_size: 18, bold: true}
-    type: Label
-    layout_properties: {grid_position: 'RQLJRA,RSQSKG'}
+              - Assist other core members with the organization of events', foreground: 'theme:On
+              Primary Container'}
+          type: RichText
+          layout_properties: {grid_position: 'AKMRBQ,HWDVKE'}
   - name: outlined_card_5
     properties: {role: elevated-card, background: 'theme:Primary Container'}
     type: ColumnPanel
     layout_properties: {grid_position: 'WGXOVE,TQPMLV'}
     components:
+    - name: education_title
+      properties: {text: Education, font_size: 18, bold: true}
+      type: Label
+      layout_properties: {grid_position: 'IOBVLV,UZEFST'}
     - name: rich_text_1
       properties: {content: '- BSc in Software Development (First Class Honours) 2020
           - 2023
@@ -127,15 +143,15 @@ components:
           - Currently studying for BSc (Honours) in Software Development 2023 - 2024'}
       type: RichText
       layout_properties: {grid_position: 'OWGELX,WQTWGP'}
-  - name: label_6
-    properties: {text: Technologies, bold: true, font_size: 18, font: ''}
-    type: Label
-    layout_properties: {grid_position: 'JRPHBN,HGFVFB'}
   - name: outlined_card_6
     properties: {role: elevated-card, background: 'theme:Primary Container'}
     type: ColumnPanel
     layout_properties: {grid_position: 'DCEPEJ,ERWULU'}
     components:
+    - name: label_6
+      properties: {text: Technologies, bold: true, font_size: 18, font: ''}
+      type: Label
+      layout_properties: {grid_position: 'YZNKLH,AISQNL'}
     - name: flow_panel_1
       properties: {}
       type: FlowPanel
