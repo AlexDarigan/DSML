@@ -1,7 +1,7 @@
 from ._anvil_designer import DSMLTemplate
 from anvil import *
 import anvil.server
-import plotly.graph_objects as go
+import plotly.graph_objects as go 
 
 class DSML(DSMLTemplate):
   def __init__(self, **properties):

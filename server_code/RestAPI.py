@@ -13,4 +13,6 @@ def trends():
 def predictions():
   return "API endpoint is not implemented yet"
 
+def getCSV():
+  anvil
 

@@ -59,6 +59,16 @@ components:
         ', bold: true, font_size: 20}
     type: Label
     layout_properties: {grid_position: 'YDTNBT,EVMJCO'}
+  - name: download
+    properties: {text: Processed Data CSV, icon: 'fa:file', url: 'https://drive.google.com/file/d/1561SE1nKLy4njGCsGISmcnSdHwI0Gfyd/view?usp=sharing'}
+    type: Link
+    layout_properties: {grid_position: 'NKQWQM,FWDAFJ'}
+    data_bindings: []
+    components:
+    - name: notebook
+      properties: {text: Jupyter Notebook, icon: 'fa:file', role: null, url: 'https://colab.research.google.com/drive/1vmHmr_NLMDIArpOZ1mRr2XEBm6vwKsEO?usp=sharing'}
+      type: Link
+      layout_properties: {grid_position: 'UJNCRK,OUIVBC'}
   - name: rich_text_2
     properties: {content: "The data for this project is sourced from the [Scryfall\
         \ API](https://scryfall.com/docs/api) via the following python code taken\
