@@ -29,27 +29,9 @@ components:
     type: Label
     layout_properties: {grid_position: 'RNJQRH,PXXUUW'}
   - name: api_design
-    properties: {content: "*You can find more detail on the REST API link in the main\
-        \ menu*\n\nThe primary navigation area of the project will be on the API Hostname\
-        \ as of the projects \nversion at that time.\n\n| Host         | Version |\n\
-        |--------------|---------|\n| api.hostname | 1       |\n&nbsp;\nThis project\
-        \ will be a set of projects that exist as a single RESTful API. Each project\
-        \ shares the same general following structure\n\n| Attribute        | Description\
-        \                                                   |\n|------------------|---------------------------------------------------------------|\n\
-        | Title            | The project title                                   \
-        \          |\n| Description      | A brief description of the project    \
-        \                        |\n| HTTP Route       | The HTTP Route of the project\
-        \                                 |\n| Resources        | A tabled list of\
-        \ HTTP Resources                               |\n| Query Parameters | A optional\
-        \ tabled set of HTTP query parameters                |\n| Technologies   \
-        \  | The technologies used in the project (e.g python)             |\n| Libraries\
-        \        | The libraries used in the project (e.g pandas)                |\n\
-        | Data Sources     | The data sources used for that project (e.g scryfall[4])\
-        \      |\n| Data Storage     | How and where our transformed data is stored\
-        \ (e.g CSV, Cloud) |\n\nAn example request is of the form {api.hostname}/{project}/{resource(s)}\n\
-        \n__Example Request__\n\n```\nGET api.hostname/stats/colors \n```\n\n__Example\
-        \ Response__\n\n```json\n{\n\t\"mode\": \"green\",\n\t\"median\": \"red\"\
-        ,\n\t\"mean\": \"blue\"\n}\n```\n\n\n"}
+    properties: {content: "__Example Request__\n\n```\nGET api.hostname/stats/colors\
+        \ \n```\n\n__Example Response__\n\n```json\n{\n\t\"mode\": \"green\",\n\t\"\
+        median\": \"red\",\n\t\"mean\": \"blue\"\n}\n```\n\n\n"}
     type: RichText
     layout_properties: {grid_position: 'VIYDBF,EMCBNT'}
     components: []
